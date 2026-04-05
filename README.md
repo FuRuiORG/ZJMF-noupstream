@@ -64,16 +64,17 @@
 ```bash
 # 1. 复制 upstream_hide.php 到项目根目录
 cp upstream_hide.php /path/to/your-zjmf/
+```
 <img width="474" height="539" alt="image" src="https://github.com/user-attachments/assets/42697264-bba6-4181-88bf-6e62c28fac2c" />
 
-
+```bash
 # 2. 直接用仓库中的 index.php 替换原文件
 cp index.php /path/to/your-zjmf/public/index.php
+```
 <img width="534" height="647" alt="image" src="https://github.com/user-attachments/assets/4f0c430b-d058-4bfe-b3de-d3b38a9ef523" />
 
 
 # 3. 完成！无需手动修改任何代码
-```
 
 **文件说明：**
 
