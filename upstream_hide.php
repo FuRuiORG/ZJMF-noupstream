@@ -9,6 +9,17 @@ if (function_exists('apache_setenv')) {
     @apache_setenv('no-gzip', '1');
 }
 
+$upstreamHideWhitelist = [];
+
+$dbConfigPath = CMF_ROOT . 'app/config/database.php';
+if (file_exists($dbConfigPath)) {
+    $dbConfig = include $dbConfigPath;
+    if (is_array($dbConfig) && !empty($dbConfig['admin_application'])) {
+        $upstreamHideWhitelist[] = '/' . $dbConfig['admin_application'] . '/';
+        $upstreamHideWhitelist[] = '/' . $dbConfig['admin_application'];
+    }
+}
+
 $upstreamHideFields = [
     'api_type',
     'upstream_product_shopping_url',
@@ -111,7 +122,19 @@ function upstreamHideTryDecompress($buffer)
 
 function upstreamHideFilter($buffer)
 {
-    global $upstreamHideFields, $upstreamReplaceValues;
+    global $upstreamHideFields, $upstreamReplaceValues, $upstreamHideWhitelist;
+
+    if (!empty($upstreamHideWhitelist)) {
+        $requestUri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+        if (!empty($requestUri)) {
+            foreach ($upstreamHideWhitelist as $whitelistPath) {
+                if (stripos($requestUri, $whitelistPath) !== false) {
+                    return $buffer;
+                }
+            }
+        }
+    }
+
     if (empty($buffer)) {
         return $buffer;
     }
