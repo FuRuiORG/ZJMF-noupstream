@@ -5,6 +5,8 @@
 [![ZJMF](https://img.shields.io/badge/ZJMF-Compatible-orange.svg)](https://www.zjmf.cn/)
 > 请在测试完全正常后继续使用
 
+> 新增了后台路径白名单，解决了后台功能出现的问题
+
 > 修复魔方财务系统（ZJMF）/api/product/prodetail接口泄露对接上游信息的轻量级安全补丁
 
 ## 目录
