@@ -1,4 +1,5 @@
 # ZJMF-noupstream
+插件可能有问题，请不要使用
 
 [![PHP Version](https://img.shields.io/badge/PHP-7.2%20--%207.4-blue.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
