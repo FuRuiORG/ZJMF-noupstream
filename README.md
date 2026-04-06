@@ -3,7 +3,7 @@
 [![PHP Version](https://img.shields.io/badge/PHP-7.2%20--%207.4-blue.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![ZJMF](https://img.shields.io/badge/ZJMF-Compatible-orange.svg)](https://www.zjmf.cn/)
-
+> 请在测试完全正常后继续使用
 > 修复魔方财务系统（ZJMF）/api/product/prodetail接口泄露对接上游信息的轻量级安全补丁
 
 ## 目录
