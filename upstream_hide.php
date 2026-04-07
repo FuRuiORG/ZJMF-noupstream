@@ -1,5 +1,27 @@
 <?php
 
+/**
+ * ZJMF-noupstream 上游信息隐藏补丁
+ *
+ * 本文件是一个补丁(Patch)，不是完整的软件。
+ * 本补丁基于魔方财务系统(ZJMF)运行，不包含魔方财务系统的任何源代码。
+ * 魔方财务系统版权归顺戴网络科技有限公司所有。
+ *
+ * 魔方财务系统软件使用协议（来自于魔方财务安装时的协议文件）
+ * 版权所有 © 2019-2021, 财务系统开源社区
+ *
+ * 感谢您选择财务系统内容管理框架, 希望我们的产品能够帮您把网站发展的更快、更好、更强！
+ * 财务系统遵循Apache License 2.0开源协议发布，并提供免费使用。
+ * 财务系统建站系统由顺戴网络科技有限公司(以下简称顺戴网络，官网 https://www.idcsmart.com)发起并开源发布。
+ *
+ * 顺戴网络包含以下网站：
+ * 顺戴网络官网：https://www.idcsmart.com
+ *
+ * 财务系统免责声明
+ * 1、使用财务系统构建的网站的任何信息内容以及导致的任何版权纠纷和法律争议及后果，财务系统官方不承担任何责任。
+ * 2、您一旦安装使用财务系统，即被视为完全理解并接受本协议的各项条款，在享有上述条款授予的权力的同时，受到相关的约束和限制。
+ */
+
 if (!defined('CMF_ROOT')) {
     return;
 }
@@ -34,7 +56,6 @@ $upstreamHideFields = [
     'upstream_cycle',
     'zjmf_api_id',
     'upstream_auto_setup',
-    'location_version',
 ];
 
 $upstreamReplaceValues = [
@@ -50,7 +71,6 @@ $upstreamReplaceValues = [
     'upstream_cycle'          => '',
     'upstream_price_type'     => null,
     'upstream_price_value'    => null,
-    'location_version'        => 0,
 ];
 
 function upstreamHideCleanArray(&$data, $hideFields, $replaceValues)
