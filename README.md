@@ -3,6 +3,9 @@
 [![PHP Version](https://img.shields.io/badge/PHP-7.2%20--%207.4-blue.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![ZJMF](https://img.shields.io/badge/ZJMF-Compatible-orange.svg)](https://www.zjmf.cn/)
+
+> ⚠️ **声明：本项目是一个补丁(Patch)，不是完整的软件。本补丁基于魔方财务系统(ZJMF)运行，不包含魔方财务系统的任何源代码。魔方财务系统版权归顺戴网络科技有限公司所有。**
+
 > 请在测试完全正常后继续使用
 
 > 新增了后台路径白名单，解决了后台功能出现的问题
@@ -25,7 +28,7 @@
 
 ## 功能特性
 
-- **精准拦截** - 自动识别并隐藏15个上游敏感字段
+- **精准拦截** - 自动识别并隐藏13个上游敏感字段
 - **零配置** - 即插即用，无需修改业务代码
 - **全局覆盖** - 基于输出缓冲，拦截所有JSON响应
 - **深度清理** - 递归遍历多层嵌套数据结构
@@ -144,7 +147,7 @@ curl -s "https://your-domain.com/api/product/prodetail?pids[0]=1" | jq '.data.de
 
 ## 拦截字段列表
 
-### 核心敏感字段（14个）
+### 核心敏感字段（13个）
 
 | 字段名 | 原始值示例 | 替换后 | 说明 |
 |-------|-----------|--------|------|
@@ -161,7 +164,8 @@ curl -s "https://your-domain.com/api/product/prodetail?pids[0]=1" | jq '.data.de
 | `upstream_price` | `"25.00"` | `"0.00"` | 清除上游原价 |
 | `upstream_cycle` | `"monthly"` | `""` | 清除计费周期 |
 | `upstream_auto_setup` | `"payment"` | `""` | 清除自动开通设置 |
-| `location_version` | `160` | `0` | 清除位置版本 |
+
+> ⚠️ **注意：`location_version` 字段不再隐藏。** 该字段是产品版本计数器，下游依赖此字段判断是否需要同步产品数据及应用利润比例。隐藏此字段会导致下游产品标价不包含利润比例，造成定价错误。
 
 ### 额外保护字段（2个）
 
@@ -312,7 +316,7 @@ function upstreamHideTryDecompress($buffer) {
   "id": 2,
   "name": "香港三网直连 2核 4GB 500Mbps 限制流量",
   "api_type": "normal",
-  "location_version": 0,
+  "location_version": 2,
   "upstream_version": 0,
   "zjmf_api_id": 0,
   "upstream_pid": 0,
@@ -332,7 +336,7 @@ function upstreamHideTryDecompress($buffer) {
 | 字段名 | 拦截前 | 拦截后 | 状态 |
 |-------|--------|--------|------|
 | `api_type` | `"zjmf_api"` | `"normal"` | 已替换 |
-| `location_version` | `2` | `0` | 已清除 |
+| `location_version` | `2` | `2` | 保留不变 |
 | `upstream_version` | `5` | `0` | 已清除 |
 | `upstream_price_type` | `"percent"` | *(已删除)* | 已移除 |
 | `upstream_price_value` | `"110.00"` | *(已删除)* | 已移除 |
@@ -397,7 +401,24 @@ $upstreamReplaceValues['your_custom_field'] = 'safe_value';
 
 ## 许可证
 
-本项目采用 [MIT License](LICENSE) 开源协议。
+本项目补丁代码采用 [MIT License](LICENSE) 开源协议。
+
+### 魔方财务系统软件使用协议（来自于魔方财务安装时的协议文件）
+
+版权所有 © 2019-2021, 财务系统开源社区
+
+感谢您选择财务系统内容管理框架, 希望我们的产品能够帮您把网站发展的更快、更好、更强！
+
+财务系统遵循Apache License 2.0开源协议发布，并提供免费使用。
+
+财务系统建站系统由顺戴网络科技有限公司(以下简称顺戴网络，官网 https://www.idcsmart.com)发起并开源发布。
+
+顺戴网络包含以下网站：
+顺戴网络官网：https://www.idcsmart.com
+
+财务系统免责声明
+1、使用财务系统构建的网站的任何信息内容以及导致的任何版权纠纷和法律争议及后果，财务系统官方不承担任何责任。
+2、您一旦安装使用财务系统，即被视为完全理解并接受本协议的各项条款，在享有上述条款授予的权力的同时，受到相关的约束和限制。
 
 ## 致谢
 
