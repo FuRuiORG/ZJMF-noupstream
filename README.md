@@ -4,6 +4,9 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![ZJMF](https://img.shields.io/badge/ZJMF-Compatible-orange.svg)](https://www.zjmf.cn/)
 
+> [!IMPORTANT]
+> IDCSMART已在V3.7.9修复了该问题，请使用官方更新补丁。
+
 > ⚠️ **声明：本项目是一个补丁(Patch)，不是完整的软件。本补丁基于魔方财务系统(ZJMF)运行，不包含魔方财务系统的任何源代码。魔方财务系统版权归顺戴网络科技有限公司所有。**
 
 > [!NOTE]
